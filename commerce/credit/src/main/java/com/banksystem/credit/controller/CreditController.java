@@ -1,13 +1,13 @@
 package com.banksystem.credit.controller;
 
 import com.banksystem.credit.dto.CreditDto;
+import com.banksystem.credit.dto.UserCreditDto;
 import com.banksystem.credit.service.CreditService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/credit",
@@ -24,5 +24,14 @@ public class CreditController {
         creditService.addCredit(creditDto);
     }
 
+    @GetMapping(path = "/user/{userId}")
+    public List<UserCreditDto> getUserCredits(final @PathVariable Long userId){
+        return creditService.getCreditByUserId(userId);
+    }
+
+    @PutMapping(path = "/{creditId}")
+    public void payNextPeriod(final @PathVariable Long creditId) {
+        creditService.payNextPeriod(creditId);
+    }
 
 }
