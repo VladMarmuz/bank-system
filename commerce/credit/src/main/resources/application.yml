@@ -3,4 +3,7 @@ spring:
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/credit_db
+    url: jdbc:postgresql://localhost:5430/credit_db
+
+  liquibase:
+    change-log: classpath:db/migrations.yaml

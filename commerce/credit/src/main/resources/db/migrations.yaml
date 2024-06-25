@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: migrations/202406241930_create_credit.xml
+      relativeToChangelogFile: true
