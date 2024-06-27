@@ -1,15 +1,17 @@
 package com.banksystem.credit.service.period;
 
+
+import com.banksystem.rates.model.CreditRates;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.LongStream;
 
 public enum RateType {
     FIXED {
-        private final double fixedRate = 0.05;
         @Override
-        public List<Double> calculateAmount(Long units, Double sum) {
-            final Double finalSum = sum * (1 + fixedRate);
+        public List<Double> calculateAmount(final Long units, final Double sum, final CreditRates creditRates) {
+            final Double finalSum = sum * (1 + creditRates.rateFixed);
             return LongStream.range(0, units)
                     .mapToDouble(month -> finalSum / units)
                     .boxed()
@@ -17,9 +19,9 @@ public enum RateType {
         }
     },
     FLOATING {
-        private double floatingRate = 0.02;
         @Override
-        public List<Double> calculateAmount(Long units, Double sum) {
+        public List<Double> calculateAmount(final Long units, final Double sum, final CreditRates creditRates) {
+            double floatingRate = creditRates.rateFloating;
             final double sumPerMonth = sum / units;
             List<Double> amounts = new ArrayList<>();
             for (int i = 0; i < units; i++) {
@@ -31,5 +33,5 @@ public enum RateType {
         }
     };
 
-    public abstract List<Double> calculateAmount(Long units, Double sum);
+    public abstract List<Double> calculateAmount(Long units, Double sum, CreditRates creditRates);
 }

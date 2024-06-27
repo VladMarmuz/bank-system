@@ -1,4 +1,4 @@
-package com.banksystem.credit.handler;
+package com.banksystem.tech.handler;
 
 import com.banksystem.credit.controller.CreditController;
 import org.slf4j.Logger;

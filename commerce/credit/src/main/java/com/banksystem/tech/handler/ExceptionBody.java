@@ -1,4 +1,4 @@
-package com.banksystem.credit.handler;
+package com.banksystem.tech.handler;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

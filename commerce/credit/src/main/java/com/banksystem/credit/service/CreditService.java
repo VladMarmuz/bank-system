@@ -2,8 +2,8 @@ package com.banksystem.credit.service;
 
 import com.banksystem.credit.dto.CreditDto;
 import com.banksystem.credit.dto.UserCreditDto;
-import com.banksystem.credit.exception.AlreadyPayedException;
-import com.banksystem.credit.exception.EntityNotFoundException;
+import com.banksystem.tech.exception.AlreadyPayedException;
+import com.banksystem.tech.exception.EntityNotFoundException;
 import com.banksystem.credit.model.Credit;
 import com.banksystem.credit.model.PaymentPeriod;
 import com.banksystem.credit.model.Status;

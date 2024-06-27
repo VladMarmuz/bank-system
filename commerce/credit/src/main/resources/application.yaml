@@ -1,4 +1,10 @@
 spring:
+  application:
+    name: credit-service
+
+server:
+  port: 8081
+
   datasource:
     username: postgres
     password: postgres
