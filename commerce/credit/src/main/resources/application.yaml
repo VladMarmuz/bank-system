@@ -13,3 +13,16 @@ server:
 
   liquibase:
     change-log: classpath:db/migrations.yaml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+
+credit:
+  rate:
+    fixed: 0.05
+    floating: 0.02
