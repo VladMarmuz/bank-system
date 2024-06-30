@@ -2,6 +2,8 @@ package com.banksystem.credit.service;
 
 import com.banksystem.credit.dto.CreditDto;
 import com.banksystem.credit.dto.UserCreditDto;
+import com.banksystem.overdue.dto.OverdueDto;
+import com.banksystem.overdue.model.OverdueProjection;
 import com.banksystem.tech.exception.AlreadyPayedException;
 import com.banksystem.tech.exception.EntityNotFoundException;
 import com.banksystem.credit.model.Credit;
@@ -13,8 +15,10 @@ import com.banksystem.credit.service.period.PeriodCalculatorFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +65,16 @@ public class CreditService {
                 .orElseThrow(AlreadyPayedException::new);
         nextPaymentPeriod.setStatus(Status.PAYED);
         creditRepository.save(credit);
+    }
+
+    public List<OverdueDto> checkOverdue() {
+        return creditRepository.findOverdueHql(LocalDate.now())
+                .stream()
+                .map(this::mapOverdue)
+                .collect(Collectors.toList());
+    }
+
+    private OverdueDto mapOverdue(OverdueProjection overdueProjection) {
+        return new OverdueDto(overdueProjection.getRemainingSum(), overdueProjection.getOverdueDate(), overdueProjection.getUserId());
     }
 }
