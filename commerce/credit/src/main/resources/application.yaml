@@ -1,9 +1,17 @@
 spring:
   application:
     name: credit-service
-
   profiles:
     active: dev
+  datasource:
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5430/credit_db
+  liquibase:
+    change-log: classpath:db/migrations.yaml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
     producer:
@@ -18,14 +26,7 @@ topics:
 server:
   port: 8081
 
-  datasource:
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5430/credit_db
 
-  liquibase:
-    change-log: classpath:db/migrations.yaml
 
 ---
 spring:
