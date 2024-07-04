@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: loan-service
+  profiles:
+    active: dev
+  datasource:
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5430/loan_db
+  liquibase:
+    change-log: classpath:db/migrations.yaml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092,localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+
+topics:
+  overdue:
+    name: t.loan.overdue
+
+
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+
+loan:
+  rate:
+    fixed: 0.05
+    floating: 0.02

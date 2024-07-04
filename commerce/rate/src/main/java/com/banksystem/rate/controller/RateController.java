@@ -1,7 +1,7 @@
 package com.banksystem.rate.controller;
 
 
-import com.banksystem.rate.dto.CreditRatesDto;
+import com.banksystem.rate.dto.LoanRatesDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +15,8 @@ import static com.banksystem.rate.RateApplication.API_VERSION;
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class RateController {
 
-    @GetMapping(path="/credit")
-    public CreditRatesDto creditRates(){
-        return new CreditRatesDto(0.489, 0.13);
+    @GetMapping(path="/loan")
+    public LoanRatesDto loanRates(){
+        return new LoanRatesDto(0.489, 0.13);
     }
 }

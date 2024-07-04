@@ -12,4 +12,4 @@ spring:
               packages: com.banksystem.overdue.dto
 
 topic:
-  name: t.credit.overdue
+  name: t.loan.overdue
