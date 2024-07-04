@@ -14,5 +14,5 @@ CREATE TABLE payment_period (
                                 status int NOT NULL,
                                 loan_id bigint NOT NULL,
                                 PRIMARY KEY (id),
-                                CONSTRAINT fk_period_credit FOREIGN KEY (loan_id) REFERENCES loan (id)
+                                CONSTRAINT fk_period_loan FOREIGN KEY (loan_id) REFERENCES loan (id)
 );

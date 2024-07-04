@@ -22,6 +22,12 @@ public class PaymentPeriod {
     private LocalDate endDate;
     private Status status;
 
+    public PaymentPeriod(Double sum, LocalDate startDate, LocalDate endDate, Status status) {
+        this.sum = sum;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
