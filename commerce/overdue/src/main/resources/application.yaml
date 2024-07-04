@@ -13,3 +13,6 @@ spring:
 
 topic:
   name: t.loan.overdue
+
+server:
+  port: 8071

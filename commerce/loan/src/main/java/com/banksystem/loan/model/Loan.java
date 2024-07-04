@@ -15,6 +15,13 @@ import java.util.List;
 @Table(name = "loan")
 public class Loan {
 
+    public Loan(String title, String description, Long userId, List<PaymentPeriod> paymentPeriods) {
+        this.title = title;
+        this.description = description;
+        this.userId = userId;
+        this.paymentPeriods = paymentPeriods;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +32,7 @@ public class Loan {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "loan_id", nullable = false)
     private List<PaymentPeriod> paymentPeriods;
+
 
 
     @Override
