@@ -4,6 +4,7 @@ import com.banksystem.loan.dto.LoanDto;
 import com.banksystem.loan.model.PaymentPeriod;
 import com.banksystem.loan.model.Status;
 import com.banksystem.rates.model.LoanRates;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,13 +15,10 @@ import java.util.function.LongFunction;
 import java.util.stream.LongStream;
 
 @Service
+@RequiredArgsConstructor
 public class DailyCalculator implements PeriodCalculator {
 
     private final LoanRates loanRates;
-
-    public DailyCalculator(LoanRates loanRates) {
-        this.loanRates = loanRates;
-    }
 
     @Override
     public List<PaymentPeriod> calculate(LoanDto loanDto) {
