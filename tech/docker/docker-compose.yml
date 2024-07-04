@@ -1,6 +1,18 @@
 version: "3"
 services:
 
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: loan_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5430:5432"
+    volumes:
+      - "../initsql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+
   loan:
     build: ../../commerce/loan
     restart: always
@@ -12,18 +24,6 @@ services:
   rate:
     build: ../../commerce/rate
     restart: always
-
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: loan_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: "/var/lib/postgresql/data/pgdata"
-    ports:
-      - "5430:5432"
-    volumes:
-      - "../sql/init.sql:/docker-entrypoint-initdb.d/init.sql"
 
   kafka-1:
     image: bitnami/kafka:latest
