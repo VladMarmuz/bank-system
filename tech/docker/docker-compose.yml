@@ -1,5 +1,18 @@
 version: "3"
 services:
+
+  credit:
+    build: ../../commerce/credit
+    restart: always
+
+  overdue:
+    build: ../../commerce/overdue
+    restart: always
+
+  rate:
+    build: ../../commerce/rate
+    restart: always
+
   postgres:
     image: postgres:latest
     environment:
