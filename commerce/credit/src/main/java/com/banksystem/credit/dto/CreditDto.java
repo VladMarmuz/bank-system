@@ -2,6 +2,7 @@ package com.banksystem.credit.dto;
 
 import com.banksystem.credit.service.period.PeriodType;
 import com.banksystem.credit.service.period.RateType;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class CreditDto {
     public String description;
     @NotNull(message = "{credit.userid.notnull}")
     public Long userId;
+    @Valid
     @NotNull(message = "{credit.duration.notnull}")
     public DurationDto duration;
     @NotNull(message = "{credit.sum.notnull}")

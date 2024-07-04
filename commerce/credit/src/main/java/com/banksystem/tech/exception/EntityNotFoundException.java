@@ -1,4 +1,12 @@
 package com.banksystem.tech.exception;
 
-public class EntityNotFoundException extends RuntimeException{
+public class EntityNotFoundException extends RuntimeException {
+
+    public EntityNotFoundException() {
+    }
+
+    public EntityNotFoundException(String message) {
+        super(message);
+    }
+
 }

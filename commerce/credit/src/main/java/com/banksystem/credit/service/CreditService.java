@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CreditService {
-
+    public static final String CREDIT_NOT_FOUND = "Credit not found";
     private final CreditRepository creditRepository;
     private final PeriodCalculatorFactory periodCalculatorFactory;
 
@@ -47,20 +47,20 @@ public class CreditService {
 
     private UserCreditDto mapCreditDto(Credit credit) {
         double remainingSum = credit.getPaymentPeriods().stream()
-                .filter(this::getPaymentPeriodPredicate)
+                .filter(this::notPayed)
                 .mapToDouble(PaymentPeriod::getSum)
                 .sum();
         return UserCreditDto.createUserCreditDto(credit, remainingSum);
     }
 
-    private boolean getPaymentPeriodPredicate(PaymentPeriod paymentPeriod) {
+    private boolean notPayed(PaymentPeriod paymentPeriod) {
         return !paymentPeriod.getStatus().payed();
     }
 
     public void payNextPeriod(Long creditId) {
-        Credit credit = creditRepository.findById(creditId).orElseThrow(EntityNotFoundException::new);
+        Credit credit = creditRepository.findById(creditId).orElseThrow(() -> new EntityNotFoundException(CREDIT_NOT_FOUND));
         PaymentPeriod nextPaymentPeriod = credit.getPaymentPeriods().stream()
-                .filter(this::getPaymentPeriodPredicate)
+                .filter(this::notPayed)
                 .min(Comparator.comparing(PaymentPeriod::getStartDate))
                 .orElseThrow(AlreadyPayedException::new);
         nextPaymentPeriod.setStatus(Status.PAYED);
