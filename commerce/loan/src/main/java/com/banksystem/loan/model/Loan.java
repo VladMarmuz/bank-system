@@ -34,17 +34,26 @@ public class Loan {
     private List<PaymentPeriod> paymentPeriods;
 
 
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
 
-        Loan loan = (Loan) o;
+        Loan loan = (Loan) object;
 
-        if (!title.equals(loan.title)) return false;
-        if (!description.equals(loan.description)) return false;
-        if (!userId.equals(loan.userId)) return false;
+        if (!title.equals(loan.title)) {
+            return false;
+        }
+        if (!description.equals(loan.description)) {
+            return false;
+        }
+        if (!userId.equals(loan.userId)) {
+            return false;
+        }
         return paymentPeriods.equals(loan.paymentPeriods);
     }
 

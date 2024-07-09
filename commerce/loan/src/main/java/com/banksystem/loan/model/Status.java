@@ -7,7 +7,7 @@ public enum Status {
             return true;
         }
     },
-    FUTURE_PAYMENT{
+    FUTURE_PAYMENT {
         @Override
         public boolean payed() {
             return false;

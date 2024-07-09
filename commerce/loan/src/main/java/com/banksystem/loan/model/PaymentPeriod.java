@@ -30,15 +30,25 @@ public class PaymentPeriod {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
 
-        PaymentPeriod that = (PaymentPeriod) o;
+        final PaymentPeriod that = (PaymentPeriod) object;
 
-        if (!sum.equals(that.sum)) return false;
-        if (!startDate.equals(that.startDate)) return false;
-        if (!endDate.equals(that.endDate)) return false;
+        if (!sum.equals(that.sum)) {
+            return false;
+        }
+        if (!startDate.equals(that.startDate)) {
+            return false;
+        }
+        if (!endDate.equals(that.endDate)) {
+            return false;
+        }
         return status == that.status;
     }
 
@@ -56,7 +66,7 @@ public class PaymentPeriod {
     public String toString() {
         return "PaymentPeriod [" +
                 "id=" + id +
-                ", summa=" + sum +
+                ", sum=" + sum +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status=" + status +

@@ -6,9 +6,9 @@ import org.hibernate.validator.constraints.Range;
 
 @AllArgsConstructor
 public class DurationDto {
-    @Range(min = 0, max = 31, message="{duration.days.minmax}")
+    @Range(min = 0, max = 31, message = "{duration.days.minmax}")
     public int days;
-    @Range(min = 0, max = 12, message="{duration.months.minmax}")
+    @Range(min = 0, max = 12, message = "{duration.months.minmax}")
     public int months;
     @PositiveOrZero
     public int years;

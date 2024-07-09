@@ -15,13 +15,14 @@ public class OverdueChecker {
     private final String kafkaTopic;
     private final KafkaTemplate<String, OverdueDto> kafkaTemplate;
 
-    public OverdueChecker(final LoanService loanService,
-                          final @Value("${topics.overdue.name}") String kafkaTopic,
-                          final KafkaTemplate<String, OverdueDto> kafkaTemplate) {
+    public OverdueChecker(LoanService loanService,
+                          @Value("${topics.overdue.name}") String kafkaTopic,
+                          KafkaTemplate<String, OverdueDto> kafkaTemplate) {
         this.loanService = loanService;
         this.kafkaTopic = kafkaTopic;
         this.kafkaTemplate = kafkaTemplate;
     }
+
     @Scheduled(fixedRate = 10000)
     public void checkOverdue(){
         List<OverdueDto> overdueDtos = loanService.checkOverdue();

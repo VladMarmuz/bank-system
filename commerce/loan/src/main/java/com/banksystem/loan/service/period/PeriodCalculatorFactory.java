@@ -11,11 +11,15 @@ public class PeriodCalculatorFactory {
     private final PeriodCalculator dailyCalculator;
 
     public PeriodCalculator calculator(PeriodType periodType) {
-        return switch (periodType) {
-            case MONTHLY -> monthlyCalculator;
-            case DAILY -> dailyCalculator;
-            default -> throw new UnsupportedOperationException("Unexpected periodType: " + periodType);
-        };
+        switch (periodType) {
+            case DAILY -> {
+                return dailyCalculator;
+            }
+            case MONTHLY -> {
+                return monthlyCalculator;
+            }
+            default -> throw new UnsupportedOperationException("Period type is not supported");
+        }
     }
 
 }

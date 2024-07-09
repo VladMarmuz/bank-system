@@ -26,7 +26,7 @@ public class LoanController {
     }
 
     @GetMapping(path = "/user/{userId}")
-    public List<UserLoanDto> getUserLoans(final @PathVariable Long userId){
+    public List<UserLoanDto> getUserLoans(final @PathVariable Long userId) {
         return loanService.getLoansByUserId(userId);
     }
 

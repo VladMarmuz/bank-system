@@ -75,6 +75,10 @@ public class LoanService {
     }
 
     private OverdueDto mapOverdue(OverdueProjection overdueProjection) {
-        return new OverdueDto(overdueProjection.getRemainingSum(), overdueProjection.getOverdueDate(), overdueProjection.getUserId());
+        return new OverdueDto(
+                overdueProjection.getRemainingSum(),
+                overdueProjection.getOverdueDate(),
+                overdueProjection.getUserId()
+        );
     }
 }
