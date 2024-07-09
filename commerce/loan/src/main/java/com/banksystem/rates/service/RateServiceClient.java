@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient
+@FeignClient("rate-service")
 public interface RateServiceClient {
     @GetMapping(path = "api/v1/rate/loan",
             produces = MediaType.APPLICATION_JSON_VALUE,
