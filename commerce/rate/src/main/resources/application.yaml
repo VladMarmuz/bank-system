@@ -1,3 +1,17 @@
 server:
-  port: 8072
+  port: 0
 
+spring:
+  application:
+    name: rate-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
