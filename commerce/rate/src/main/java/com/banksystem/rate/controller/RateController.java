@@ -15,7 +15,7 @@ import static com.banksystem.rate.RateApplication.API_VERSION;
         consumes = MediaType.APPLICATION_JSON_VALUE)
 public class RateController {
 
-    @GetMapping(path="/loan")
+    @GetMapping("/loan")
     public LoanRatesDto loanRates(){
         return new LoanRatesDto(0.489, 0.13);
     }

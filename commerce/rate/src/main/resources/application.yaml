@@ -1,3 +1,12 @@
 spring:
   application:
     name: rate-service
+  profiles:
+    active: docker
+  config:
+    import: optional:config-server:http://config:8888/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka

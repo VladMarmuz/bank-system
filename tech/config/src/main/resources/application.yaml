@@ -10,5 +10,5 @@ spring:
         server:
           git:
             uri: https://github.com/VladMarmuz/bank-system/tree/tech/configurations
-            default-label: main
+            default-label: master
 

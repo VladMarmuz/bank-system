@@ -1,35 +1,19 @@
-server:
-  port: 0
-
 spring:
   application:
     name: loan-service
-  profiles:
-    active: dev
+  config:
+    import: optional:config-server:http://localhost:8888/
   datasource:
-    url: jdbc:postgresql://localhost:5430/loan_db
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  liquibase:
-    change-log: classpath:db/migrations.yaml
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092,localhost:9094
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      acks: all
-
-topics:
-  overdue:
-    name: t.loan.overdue
+    url: jdbc:postgresql://postgres:5432/loan_db
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery:8761/eureka
+
+topics:
+  overdue:
+    name: t.loan.overdue
 
 management:
   endpoints:
@@ -39,13 +23,13 @@ management:
 
 ---
 spring:
+  profiles:
+    active: docker
   config:
-    activate:
-      on-profile: dev
-  jpa:
-    show-sql: true
-
-loan:
-  rate:
-    fixed: 0.05
-    floating: 0.02
+    import: optional:config-server:http://localhost:8888/
+    kafka:
+      producer:
+        bootstrap-servers: localhost:9092,localhost:9094
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        acks: all

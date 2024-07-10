@@ -13,16 +13,24 @@ services:
     volumes:
       - "../initsql/init.sql:/docker-entrypoint-initdb.d/init.sql"
 
+  discovery:
+    build: ../eureka
+    restart: always
+
   loan:
     build: ../../commerce/loan
     restart: always
-
-  overdue:
-    build: ../../commerce/overdue
-    restart: always
+    depends_on:
+      - discovery
 
   rate:
     build: ../../commerce/rate
+    restart: always
+    depends_on:
+      - discovery
+
+  overdue:
+    build: ../../commerce/overdue
     restart: always
 
   kafka-1:
