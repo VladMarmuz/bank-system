@@ -3,33 +3,25 @@ spring:
     name: loan-service
   config:
     import: optional:config-server:http://localhost:8888/
-  datasource:
-    url: jdbc:postgresql://postgres:5432/loan_db
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://discovery:8761/eureka
-
-topics:
-  overdue:
-    name: t.loan.overdue
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092,localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
 
 ---
 spring:
   profiles:
     active: docker
   config:
-    import: optional:config-server:http://localhost:8888/
-    kafka:
-      producer:
-        bootstrap-servers: localhost:9092,localhost:9094
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-        acks: all
+    import: optional:config-server:http://config:8888/
+  datasource:
+    url: jdbc:postgresql://postgres:5432/loan_db
+  kafka:
+    bootstrap-servers: kafka:9092, kafka:9094
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka

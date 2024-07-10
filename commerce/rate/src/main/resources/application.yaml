@@ -1,10 +1,18 @@
 spring:
   application:
     name: rate-service
+  config:
+    import: optional:config-server:http://localhost:8888/
+
+---
+spring:
   profiles:
     active: docker
   config:
     import: optional:config-server:http://config:8888/
+
+server:
+  port: 8080
 
 eureka:
   client:

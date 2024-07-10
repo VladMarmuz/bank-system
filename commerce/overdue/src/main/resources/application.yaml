@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: docker
   kafka:
     consumer:
       group-id: "default"
@@ -16,5 +14,9 @@ spring:
 topic:
   name: t.loan.overdue
 
-server:
-  port: 8071
+---
+spring:
+  profiles:
+    active: docker
+  kafka:
+    bootstrap-servers: kafka:9092, kafka:9094
