@@ -43,6 +43,18 @@ services:
     build: ../../commerce/overdue
     restart: always
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.4
+    container_name: keycloak
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: bank
+      KEYCLOAK_ADMIN_PASSWORD: bank
+    command:
+      start-dev
+
   kafka-1:
     image: bitnami/kafka:latest
     ports:
