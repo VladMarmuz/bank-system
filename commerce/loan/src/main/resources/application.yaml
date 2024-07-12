@@ -9,7 +9,10 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
-
+  cloud:
+    config:
+      import-check:
+        enabled: false
 ---
 spring:
   profiles:
